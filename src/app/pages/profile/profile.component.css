@@ -1,0 +1,26 @@
+@media only screen and (max-width: 600px) {
+  .profile-container{
+    flex-direction: column !important;
+  }
+  .left-side,.right-side{
+    width: 100% !important;
+  }
+}
+.profile-container {
+  display: flex;
+  flex-direction: row;
+}
+.left-side {
+  width: 60%;
+}
+.right-side {
+  padding: 2rem;
+
+  border-bottom: 5px solid var(--secondary-color);
+  border-right: 3px solid var(--secondary-color);
+  width: 40%;
+}
+.cart-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}

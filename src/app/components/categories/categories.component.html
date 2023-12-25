@@ -1,0 +1,10 @@
+<ul class="categories-container">
+  <li style="background-color: rgb(108, 196, 196)"  (click)="onChooseCategory('allproduct')">All Products</li>
+  <li
+    style="background-color: rgb(108, 196, 196)"
+    *ngFor="let category of categories"
+    (click)="onChooseCategory(category)"
+  >
+    {{ category }}
+  </li>
+</ul>

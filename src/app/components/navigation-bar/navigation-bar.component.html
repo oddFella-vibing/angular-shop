@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand text-primary-blue" [routerLink]="['']"
+    ><h1>Bags&stuffs</h1></a
+  >
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [ngClass]="{ show: navbarOpen }">
+    <ul class="navbar-nav">
+      <li
+        class="nav-item"
+        (click)="toggleNavbar()"
+        *ngIf="authService.isLoggedin"
+      >
+        <a class="nav-link" [routerLink]="['profile']" routerLinkActive="active"
+          ><i class="fa-solid fa-cart-shopping fa-lg text-primary-blue"></i
+        ></a>
+      </li>
+      <li
+        class="nav-item"
+        (click)="toggleNavbar()"
+        *ngIf="authService.isLoggedin"
+      >
+        <a
+          class="nav-link"
+          (click)="authService.logOut()"
+          routerLinkActive="active"
+          ><i class="fa-solid fa-right-from-bracket fa-lg text-primary-blue"></i
+        ></a>
+      </li>
+
+      <li
+        class="nav-item"
+        (click)="toggleNavbar()"
+        *ngIf="!authService.isLoggedin"
+      >
+        <a class="nav-link profile-toggle" routerLinkActive="active">
+          <i class="fa-solid fa-user-plus fa-lg text-primary-blue"></i>
+        </a>
+        <ul class="signup-menu">
+          <li><a routerLink="/log-in">Log in</a></li>
+          <li><a routerLink="/sign-up">Sign up</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

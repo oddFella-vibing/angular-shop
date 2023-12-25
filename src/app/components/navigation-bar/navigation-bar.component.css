@@ -1,0 +1,39 @@
+.navbar{
+  box-shadow: 2px 2px 5px var(--secondary-color) ;
+  padding: 5px;
+  border-radius: 1rem;
+  border-bottom: 5px solid var(--secondary-color);
+  border-right: 3px solid var(--secondary-color);
+}
+.navbar-brand {
+  padding: 10px;
+}
+.navbar-nav {
+  margin-left: 90%;
+}
+
+.signup-menu {
+  border-bottom: 5px solid var(--primary-color);
+  border-right: 3px solid var(--primary-color);
+padding: 0px 10px 0px 10px;
+  background-color: white;
+  list-style-type: none;
+  color: var(--secondary-color);
+  right: 2rem;
+  position: absolute;
+  min-width: max-content;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 1s;
+  z-index: 100;
+}
+.signup-menu a :hover{
+color: var(--primary-color);
+}
+
+.profile-toggle:hover ~ .signup-menu,
+.profile-toggle:focus ~ .signup-menu,
+.profile-toggle:focus-within ~ .signup-menu,
+.signup-menu:hover {
+  max-height: 200px;
+}

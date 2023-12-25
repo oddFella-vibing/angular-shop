@@ -1,0 +1,21 @@
+.categories-container {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  width: 100%;
+}
+.categories-container li {
+  width: 20%;
+  text-align: center;
+  width: 12rem;
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+}
+.categories-container li:hover {
+  border-bottom: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+
+}

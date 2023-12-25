@@ -1,0 +1,23 @@
+<div class="card">
+  <img [src]="product.image" alt="product-view" class="card-img" />
+  <div class="card-img-overlay">
+    <div class="quick-info">
+      <div class="card-title quick-title">{{ product.title }}</div>
+      <p class="card-text quick-price">${{ product.price }}</p>
+    </div>
+
+    <p class="card-text product-description">
+      {{ product.description }}
+    </p>
+  </div>
+</div>
+<div *ngIf="authService.isLoggedin">
+  <button class="form-control cart-button" (click)="addToCart()">
+    <i class="fa-solid fa-cart-plus"></i>
+  </button>
+  <div *ngIf="route.url=='/profile'">
+    <button class="form-control btn btn-danger" (click)="removeFromCart()">
+      remove from cart
+    </button>
+  </div>
+</div>
