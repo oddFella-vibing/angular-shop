@@ -5,21 +5,38 @@ import {
 } from '@angular/fire/compat/firestore';
 
 import { AuthService } from './auth.service';
-import { map } from 'rxjs';
+import { forkJoin, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewProductsService {
+  newProductList: any[] = [];
+  idarray: any[] = [];
   constructor(
     private afs: AngularFirestore,
     private authService: AuthService
   ) {}
-  loadNewProducts() {
-    return this.afs
-      .collection(`users/GDbSey19SoesBVd7mzWOYyf6oPB2/new-products`)
+  loadNewProducts(id: any) {
+    return this.afs.collection(`users/${id}/new-products`).valueChanges();
+  }
+  loadNewProductList() {
+    this.afs
+      .collection('users')
       .valueChanges()
-     
+      .subscribe((response) => {
+        response.map((r: any) => this.idarray.push(r.uid));
+
+        this.idarray.map((id: any) => {
+          this.loadNewProducts(id).subscribe((res: any) => {
+            res.map((r: any) => {
+              this.newProductList.push(r);
+            });
+          });
+        });
+        
+      });
+    return this.newProductList;
   }
   addNewProduct(product: any) {
     this.afs

@@ -11,30 +11,27 @@ import { ProductlistService } from 'src/app/shared/services/productlist.service'
 })
 export class HomeComponent implements OnInit {
   productList: ProductData[] = [];
- newProductList: ProductData[] = [];
+  newProductList: ProductData[] = [];
   unfilterdProductList: ProductData[] = [];
-  constructor(public productlistService: ProductlistService,public newProductsService:NewProductsService) {}
+  constructor(
+    public productlistService: ProductlistService,
+    public newProductsService: NewProductsService
+  ) {}
   ngOnInit(): void {
- 
+    this.newProductList = this.newProductsService.loadNewProductList();
+
     this.productlistService.getProductList().subscribe((res: any) => {
       this.unfilterdProductList = res;
       this.productList = this.unfilterdProductList;
     });
-    this.newProductsService.loadNewProducts().subscribe(
-      (res:any)=>{
-        this.newProductList=res
-      }
-    )
   }
   showCategory(chosenCategory: any) {
-    if(chosenCategory ==='allproduct'){
+    if (chosenCategory === 'allproduct') {
       this.productList = this.unfilterdProductList;
-    }
-    else{
+    } else {
       this.productList = this.unfilterdProductList.filter((p) => {
         return p.category == chosenCategory;
       });
     }
-    }
-   
+  }
 }
