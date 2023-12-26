@@ -1,0 +1,22 @@
+.form{
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px var(--secondary-color) ;
+    padding: 1rem;
+    border-radius: 1rem;
+    border-bottom: 5px solid var(--secondary-color);
+    border-right: 3px solid var(--secondary-color);
+}
+.form-group{
+    display: flex;
+    flex-direction: row;
+   padding: 1rem;
+width: 100%;
+}
+.form-group label{
+    width: 20%;
+}
+.form-group .input-control{
+    width: 80%;
+}

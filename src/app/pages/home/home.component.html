@@ -1,9 +1,12 @@
 <div class="home-container">
-    <app-categories (returnCategory)="showCategory($event)"></app-categories>
+  <app-categories (returnCategory)="showCategory($event)"></app-categories>
   <div class="shopping-list-container">
-    <app-shopping-list-item 
- 
+    <app-shopping-list-item
       *ngFor="let product of productList"
+      [product]="product"
+    ></app-shopping-list-item>
+    <app-shopping-list-item
+      *ngFor="let product of newProductList"
       [product]="product"
     ></app-shopping-list-item>
   </div>

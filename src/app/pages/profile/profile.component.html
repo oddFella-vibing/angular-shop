@@ -3,10 +3,10 @@
     <h2>{{ user.displayName }}'s cart</h2>
     <div class="cart-container">
       <app-shopping-list-item
-        *ngFor="let item of cartItems"
-        [product]="item.data"
-        [cartServiceid]="item.id"
-      ></app-shopping-list-item>
+      *ngFor="let item of cartItems"
+      [product]="item.data"
+      [cartServiceid]="item.id"
+    ></app-shopping-list-item>
     </div>
   </div>
 
@@ -25,12 +25,13 @@
           <td>${{ product.data.price }}</td>
         </tr>
       </tbody>
-      <tfoot >
-        <tr class="table-primary" >
+      <tfoot>
+        <tr class="table-primary">
           <td>Total</td>
-          <td>${{totalCost}}</td>
+          <td>${{ totalCost }}</td>
         </tr>
       </tfoot>
     </table>
   </div>
 </div>
+<app-post-new-item></app-post-new-item>
