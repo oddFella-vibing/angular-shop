@@ -6,41 +6,53 @@ import {
 
 import { AuthService } from './auth.service';
 import { forkJoin, map } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewProductsService {
-  newProductList: any[] = [];
-  idarray: any[] = [];
   constructor(
     private afs: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private afstorage: AngularFireStorage
   ) {}
   loadNewProducts(id: any) {
     return this.afs.collection(`users/${id}/new-products`).valueChanges();
   }
+
   loadNewProductList() {
+    const idarray: any[] = [];
+    const newProductList: any[] = [];
     this.afs
       .collection('users')
       .valueChanges()
       .subscribe((response) => {
-        response.map((r: any) => this.idarray.push(r.uid));
+        response.map((r: any) => idarray.push(r.uid));
 
-        this.idarray.map((id: any) => {
+        idarray.map((id: any) => {
           this.loadNewProducts(id).subscribe((res: any) => {
             res.map((r: any) => {
-              this.newProductList.push(r);
+              newProductList.push(r);
             });
           });
         });
-        
       });
-    return this.newProductList;
+console.log(newProductList)
+    return newProductList;
   }
-  addNewProduct(product: any) {
-    this.afs
-      .collection(`users/${this.authService.userData.uid}/new-products`)
-      .add(product);
+  addNewProduct(product: any, imageFile: any) {
+    const date = new Date();
+    this.afstorage.upload(`product-images/${date}`, imageFile).then((res) => {
+      this.afstorage
+        .ref(`product-images/${date}`)
+        .getDownloadURL()
+        .subscribe((url) => {
+          product.image = url;
+          this.afs
+            .collection(`users/${this.authService.userData.uid}/new-products`)
+            .add(product);
+        });
+    });
   }
 }

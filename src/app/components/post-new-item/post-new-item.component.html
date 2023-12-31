@@ -1,6 +1,6 @@
 <form
   class="form card text-primary-blue"
-  (submit)="uploadProduct();productForm.reset()"
+  (submit)="uploadProduct()"
   #productForm="ngForm"
 >
   <h2>Post your product here .</h2>
@@ -56,7 +56,8 @@
     <label for="image">Upload a photo of your product</label>
     <input
       type="file"
-      accept="image/"
+      accept="image/*"
+      (change)="onFileInputChange($event)"
       name="product_img_path"
       [(ngModel)]="product.image"
     />

@@ -15,6 +15,7 @@
   <button class="form-control cart-button" (click)="addToCart()">
     <i class="fa-solid fa-cart-plus"></i>
   </button>
+  <div class="alert alert-success" *ngIf="added">added to your cart !</div>
   <div *ngIf="route.url=='/profile'">
     <button class="form-control btn btn-danger" (click)="removeFromCart()">
       remove from cart

@@ -25,10 +25,19 @@ export class PostNewItemComponent {
     description: '',
     image: '',
   };
+  imageFile: any;
   constructor(public newProductsService: NewProductsService) {}
+  onFileInputChange($event: any) {
+    const reader = new FileReader();
+    reader.readAsDataURL($event.target.files[0]);
+    this.imageFile = $event.target.files[0];
+  }
   uploadProduct() {
-    this.newProductsService.addNewProduct(this.product);
+    this.newProductsService.addNewProduct(this.product, this.imageFile);
+
     this.uploaded = true;
-    setTimeout(()=>{this.uploaded=false},2000)
+    setTimeout(() => {
+      this.uploaded = false;
+    }, 2000);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductData } from 'src/app/models/product-model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NewProductsService } from 'src/app/shared/services/new-products.service';
@@ -23,8 +23,10 @@ export class HomeComponent implements OnInit {
     this.productlistService.getProductList().subscribe((res: any) => {
       this.unfilterdProductList = res;
       this.productList = this.unfilterdProductList;
+    
     });
   }
+
   showCategory(chosenCategory: any) {
     if (chosenCategory === 'allproduct') {
       this.productList = this.unfilterdProductList;
@@ -34,4 +36,5 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+ 
 }

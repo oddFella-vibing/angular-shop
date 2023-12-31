@@ -32,9 +32,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   loadCartItems() {
     this.cartService.loadCart().subscribe((res: any) => {
       this.cartItems = res;
-      this.cartItems.map((p) => {
-        this.totalCost += p.data.price;
-      });
+      this.totalCost = this.cartItems.reduce(
+        (total, p) => (total += p.data.price),
+        0
+      );
     });
   }
   ngOnDestroy(): void {

@@ -12,6 +12,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 export class ShoppingListItemComponent {
   @Input() product!: ProductData;
   @Input() cartServiceid!: any;
+  added=false
   constructor(
     public cartService: CartService,
     public authService: AuthService,
@@ -20,6 +21,10 @@ export class ShoppingListItemComponent {
 
   addToCart() {
     this.cartService.addToCart(this.product);
+   this.added=true;
+   setTimeout(() => {
+    this.added=false;
+   }, 1000);
   }
   removeFromCart() {
 
